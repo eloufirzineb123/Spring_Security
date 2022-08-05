@@ -29,13 +29,14 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception {
       http
               .authorizeRequests()
-              .antMatchers("/login")  // pour les requette qui matchant cette URI
+              .antMatchers("/registration**")  // pour les requette qui matchant cette URI
               .permitAll()  //Autoriser toutes les requette==> pas besoin d'etre connecter'
-             // .anyRequest().authenticated()  // pour toutes les autres requette demande une authentification
+              .anyRequest().authenticated()  // pour toutes les autres requette demande une authentification
               .and()
               .formLogin()  // on active le formulaire login
               .loginPage("/login")  // on configire notre propre page de login plutots qu'utilise la page par defaut de spring security 
-              //.successForwardUrl("/registration")  // redirection
+              .permitAll()
+//.successForwardUrl("/registration")  // redirection
               ;
               
               
